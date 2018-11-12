@@ -1,0 +1,60 @@
+<h1>Editar transacción</h1>
+<div class="row">
+    <div class="col-sm-6">
+
+        <form action="<?php echo APP_URL . "transacciones/editar"; ?>" method="POST">
+            <input type="hidden" name="id" value="<?php echo $this->transaccion["id"]; ?>">
+
+            <label for="cuenta">Cuenta</label>
+            <select name="account_id" class="form-control">
+                <?php foreach ($this->cuentas as $cuenta) {
+                    if ($this->transaccion["account_id"] == $cuenta["id"]) { ?>
+                        <option selected value="<?php echo $cuenta["id"]; ?>">
+                            <?php echo $cuenta["name"]; ?></option>
+                        <?php
+                    } else { ?>
+                        <option value="<?php echo $cuenta["id"]; ?>">
+                            <?php echo $cuenta["name"]; ?></option>
+                    <?php } ?>
+                <?php } ?>
+            </select>
+            </p>
+
+            <p>
+                <label for="categoria">Categoría</label>
+                <select name="category_id" class="form-control">
+                    <?php foreach ($this->categorias as $categoria) {
+                        if ($this->transaccion["category_id"] == $categoria["id"]) { ?>
+                            <option selected value="<?php echo $categoria["id"]; ?>">
+                                <?php echo $categoria["name"]; ?></option>
+                            <?php
+                        } else { ?>
+                            <option value="<?php echo $categoria["id"]; ?>">
+                                <?php echo $categoria["name"]; ?></option>
+                        <?php } ?>
+                    <?php } ?>
+                </select>
+            </p>
+
+            <p>
+                <label for="description">Descripción</label>
+                <input type="description" class="form-control" name="description" value="<?php echo $this->transaccion["description"]; ?>">
+            </p>
+
+            <p>
+                <label for="date">Fecha</label>
+                <input type="date" name="date" class="form-control" value="<?php echo $this->transaccion["date"]; ?>">
+            </p>
+
+            <p>
+                <label for="monto">Monto</label>
+                <input type="monto" name="amount" class="form-control"
+                       value="<?php echo $formattedNum = number_format($this->transaccion["amount"], 2); ?>">
+            </p>
+
+            <p>
+                <input type="submit" value="Guardar tarea" class="btn-primary" onclick="if(!confirm('¿Desea completar la acción?')) return false;">
+            </p>
+        </form>
+    </div>
+</div>

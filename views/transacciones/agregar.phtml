@@ -1,0 +1,47 @@
+<h2>Agregar transacción</h2>
+<div class="row">
+    <div class="col-sm-6">
+        <form action="<?php echo APP_URL . "transacciones/agregar"; ?>" method="POST">
+
+            <p>
+                <label for="account_id">Cuenta</label>
+                <select name="account_id" class="form-control">
+                    <?php foreach ($this->cuentas as $cuenta) { ?>
+                        <option value="<?php echo $cuenta["id"]; ?>">
+                            <?php echo $cuenta["name"]; ?></option>
+                    <?php } ?>
+                </select>
+            </p>
+
+            <p>
+                <label for="category_id">Categoría</label>
+                <select name="category_id" class="form-control">
+                    <?php foreach ($this->categorias as $categoria) { ?>
+                        <option value="<?php echo $categoria["id"]; ?>">
+                            <?php echo $categoria["name"]; ?></option>
+                    <?php } ?>
+                </select>
+            </p>
+
+            <p>
+                <label for="descripcion">Descripción</label>
+                <textarea name="description" class="form-control"></textarea>
+            </p>
+
+            <p>
+                <label for="fecha">Fecha</label>
+                <input type="date" name="date" value="<?php echo date("Y-m-d"); ?>" class="form-control">
+            </p>
+
+            <p>
+                <label for="monto">Monto</label>
+                <input name="amount" class="form-control" placeholder="Ejem: 100.00 ó -100.00 (positivo ó negativo y 2 decimales)">
+            </p>
+
+            <p>
+            <input class="btn-primary" type="submit" value="Guardar transacción" onclick="if(!confirm('¿Desea completar la acción?')) return false;">
+            </p>
+        </form>
+    </div>
+    <div class="col-sm-6"></div>
+</div>

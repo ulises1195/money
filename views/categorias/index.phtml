@@ -1,0 +1,49 @@
+<div class="row">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">Money Tracking</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="<?php echo APP_URL . "transacciones/index"; ?>">Listado de transacciones</a></li>
+                <li><a href="<?php echo APP_URL . "cuentas/index"; ?>">Listado de cuentas</a></li>
+                <li class="active"><a href="<?php echo APP_URL . "categorias/index"; ?>">Listado de categorías</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="col-sm-8"><h3>Listado de categorías</h3></div>
+</div>
+
+</br>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acción</th>
+        </tr>
+        <?php foreach ($this->categorias as $categoria): ?>
+            <tr>
+                <td><?php echo $categoria["id"]; ?></td>
+                <td><?php echo $categoria["name"]; ?></td>
+                <td>
+                    <a href="<?php echo APP_URL . "categorias/editar/" . $categoria["id"]; ?>">
+                        <span class="glyphicon glyphicon-edit"> </span>
+                    </a> |
+                    <a onclick="if(!confirm('¿Desea eliminar la categoría seleccionada?')) return false;"
+                       href="<?php echo APP_URL . "categorias/eliminar/" . $categoria["id"]; ?>">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+<div class="col-sm-8">
+    <a href="<?php echo APP_URL . "categorias/agregar"; ?>">
+        <button type="button" class="btn-primary add">
+            <span class="glyphicon glyphicon-plus">&nbsp;Categoría</span>
+        </button>
+    </a>
+</div>
